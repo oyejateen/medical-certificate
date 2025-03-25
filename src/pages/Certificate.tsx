@@ -182,13 +182,6 @@ const Certificate = () => {
   
   if (!certificateData) return null;
   
-  // Calculate duration in words
-  const startDateObj = new Date(certificateData.startDate);
-  const endDateObj = new Date(certificateData.endDate);
-  const durationInDays = Math.ceil(
-    (endDateObj.getTime() - startDateObj.getTime()) / (1000 * 60 * 60 * 24)
-  );
-  
   const genderPronoun = 
     certificateData.patientGender === 'male' ? 'his' : 
     certificateData.patientGender === 'female' ? 'her' : 
