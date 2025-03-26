@@ -16,4 +16,10 @@ export default defineConfig({
       usePolling: true,
     },
   },
+  build: {
+    rollupOptions: {
+      // Ensure Rollup doesn't try to use platform-specific binaries
+      context: 'globalThis'
+    }
+  }
 })

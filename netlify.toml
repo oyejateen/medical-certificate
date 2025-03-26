@@ -5,10 +5,12 @@
   publish = "dist"
   
   # Build command
-  command = "npm install @rollup/rollup-linux-x64-gnu --save-dev && npm run build"
+  command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
+  ROLLUP_NATIVE = "false"
+  NODE_OPTIONS = "--max_old_space_size=4096"
 
 # Handle SPA routing for React Router
 [[redirects]]
