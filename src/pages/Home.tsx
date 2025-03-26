@@ -1,74 +1,31 @@
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 const Home = () => {
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6 }
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const hoverScale = {
-    scale: 1.05,
-    transition: { duration: 0.3 }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       <div className="container mx-auto px-4 py-12 max-w-5xl">
-        <motion.header 
-          className="text-center mb-12"
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-        >
+        <header className="text-center mb-12">
           <h1 className="text-5xl font-bold text-blue-800 mb-4">Medical Certificate Generator</h1>
           <p className="text-xl text-gray-600 mb-8">
             Create professional medical certificates in seconds
           </p>
           <div className="w-40 h-0.5 bg-blue-500 mx-auto rounded-full"></div>
-        </motion.header>
+        </header>
 
-        <motion.div 
-          className="bg-white rounded-xl shadow-xl p-8 mb-10 border border-blue-100"
-          initial="hidden"
-          animate="visible"
-          variants={fadeIn}
-          whileHover={{ y: -5 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div className="bg-white rounded-xl shadow-xl p-8 mb-10 border border-blue-100 hover:translate-y-[-5px] transition-transform duration-300">
           <div className="grid md:grid-cols-2 gap-8">
             <div className="flex flex-col justify-center">
               <h2 className="text-3xl font-semibold text-gray-800 mb-6">Why Use Our Service?</h2>
-              <motion.ul 
-                className="space-y-4 text-gray-700"
-                variants={staggerContainer}
-                initial="hidden"
-                animate="visible"
-              >
+              <ul className="space-y-4 text-gray-700">
                 {[
                   "Quickly generate professional medical certificates",
                   "Customize with your personal information",
                   "Download as PDF for easy sharing",
                   "Handwritten-style text for authenticity"
                 ].map((item, index) => (
-                  <motion.li 
+                  <li 
                     key={index} 
                     className="flex items-start"
-                    variants={fadeIn}
                   >
                     <span className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center mr-3">
                       <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,47 +33,35 @@ const Home = () => {
                       </svg>
                     </span>
                     <span className="pt-1">{item}</span>
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
+              </ul>
             </div>
-            <motion.div 
-              className="flex items-center justify-center"
-              whileHover={{ rotate: 2 }}
-              transition={{ duration: 0.3 }}
-            >
+            <div className="flex items-center justify-center hover:rotate-1 transition-transform duration-300">
               <img 
                 src="https://img.freepik.com/free-vector/medical-prescription-concept-illustration_114360-6916.jpg" 
                 alt="Medical Certificate Illustration" 
                 className="max-h-72 rounded-lg shadow-lg"
               />
-            </motion.div>
+            </div>
           </div>
           
           <div className="mt-10 text-center">
-            <motion.div
-              whileHover={hoverScale}
-              whileTap={{ scale: 0.95 }}
-            >
+            <div className="hover:scale-105 active:scale-95 transition-transform duration-300 inline-block">
               <Link 
                 to="/form" 
                 className="inline-flex items-center justify-center bg-blue-600 text-white text-lg font-medium rounded-full px-10 py-4 shadow-lg hover:bg-blue-700 transition-colors"
               >
-                <span>Get Yours</span>
+                <span>Create Your Certificate</span>
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div 
-          className="grid md:grid-cols-3 gap-6 mb-10"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-        >
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
           {[
             {
               icon: (
@@ -146,30 +91,20 @@ const Home = () => {
               description: "Download your certificate as a PDF"
             }
           ].map((item, index) => (
-            <motion.div 
+            <div 
               key={index}
-              className="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:border-blue-200"
-              variants={fadeIn}
-              whileHover={{ 
-                y: -10,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
-              }}
+              className="bg-white rounded-xl p-6 shadow-md border border-gray-100 hover:border-blue-200 hover:translate-y-[-10px] hover:shadow-xl transition-all duration-300"
             >
               <div className="flex justify-center mb-4">
                 {item.icon}
               </div>
               <h3 className="text-xl font-semibold text-center mb-2">{item.title}</h3>
               <p className="text-gray-600 text-center">{item.description}</p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-        >
+        <div className="text-center mb-16">
           <a 
             href="https://buymeacoffee.com/heyjateen" 
             target="_blank"
@@ -181,28 +116,19 @@ const Home = () => {
             </svg>
             <span>Buy me a coffee</span>
           </a>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="bg-white rounded-xl p-8 shadow-md border border-gray-100 mb-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-        >
+        <div className="bg-white rounded-xl p-8 shadow-md border border-gray-100 mb-12">
           <h2 className="text-2xl font-semibold text-blue-800 mb-4 text-center">About This Project</h2>
           <p className="text-gray-700 leading-relaxed text-center">
             Our Medical Certificate Generator provides a simple way to create professional-looking medical certificates.
             Whether you need a certificate for work, school, or any other purpose, our tool makes it quick and easy.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.footer 
-          className="text-center text-gray-500 text-sm mt-16"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-        >
+        <footer className="text-center text-gray-500 text-sm mt-16">
           <p>&copy; {new Date().getFullYear()} Medical Certificate Generator. All rights reserved.</p>
+          <p className="mt-1">This is for demonstration purposes only.</p>
           <div className="mt-4">
             <a 
               href="https://buymeacoffee.com/heyjateen" 
@@ -213,7 +139,7 @@ const Home = () => {
               Created by Jateen
             </a>
           </div>
-        </motion.footer>
+        </footer>
       </div>
     </div>
   );

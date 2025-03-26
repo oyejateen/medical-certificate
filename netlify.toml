@@ -8,9 +8,7 @@
   command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "20"
-  ROLLUP_NATIVE = "false"
-  NODE_OPTIONS = "--max_old_space_size=4096"
+  NODE_VERSION = "18"
 
 # Handle SPA routing for React Router
 [[redirects]]
