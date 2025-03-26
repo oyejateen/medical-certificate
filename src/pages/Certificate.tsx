@@ -212,141 +212,145 @@ const Certificate = () => {
   };
   
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <div className="bg-white rounded-lg shadow-xl p-8 mb-6">
-        <div ref={certificateRef} className="certificate-container relative bg-white p-8 border-8 border-double border-gray-300 min-h-[700px]">
-          {/* Certificate Header with Logo */}
-          <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6">
-            <div className="flex items-center mb-4 sm:mb-0">
-              <div className="mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2a6fd6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                </svg>
+    <div className="container mx-auto px-4 py-8">
+      {/* Certificate wrapper with scroll for small screens */}
+      <div className="bg-white rounded-lg shadow-xl p-4 mb-6 overflow-auto">
+        {/* Fixed-width container to prevent responsive layout issues */}
+        <div className="certificate-wrapper min-w-[700px] max-w-[800px] mx-auto">
+          <div ref={certificateRef} className="certificate-container relative bg-white p-8 border-8 border-double border-gray-300 min-h-[700px]">
+            {/* Certificate Header with Logo */}
+            <div className="flex flex-col sm:flex-row sm:justify-between items-center mb-6">
+              <div className="flex items-center mb-4 sm:mb-0">
+                <div className="mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#2a6fd6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-xl font-bold text-blue-800">{randomClinicName}</h2>
+                  <p className="text-sm text-gray-600">{randomAddress}</p>
+                  <p className="text-sm text-gray-600">Phone: {randomPhoneNumber}</p>
+                </div>
               </div>
-              <div>
-                <h2 className="text-xl font-bold text-blue-800">{randomClinicName}</h2>
-                <p className="text-sm text-gray-600">{randomAddress}</p>
-                <p className="text-sm text-gray-600">Phone: {randomPhoneNumber}</p>
+              <div className="text-right">
+                <p className="text-sm text-gray-600">Certificate ID: {certificateId}</p>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-sm text-gray-600">Certificate ID: {certificateId}</p>
-            </div>
-          </div>
 
-          {/* Certificate Title */}
-          <div className="text-center mb-8">
-            <h1 className="text-2xl font-bold uppercase tracking-wider text-blue-900 mb-1">MEDICAL CERTIFICATE</h1>
-            <div className="h-1 w-32 bg-blue-900 mx-auto"></div>
-          </div>
-          
-          {/* Certificate Date and Location */}
-          <div className="flex justify-end mb-6">
-            <p style={{ fontFamily: randomFont }} className="text-gray-700">
-              {certificateData.cityName}, {currentDate}
-            </p>
-          </div>
-          
-          {/* Certificate Content - Letterhead */}
-          <div className="mb-6">
-            <h2 className="text-xl font-bold mb-2">To Whom It May Concern:</h2>
-            <p className="mb-2">
-              <span className="font-semibold">Institution:</span>{' '}
-              <span style={dashStyle}>
-                <span style={highlightedTextStyle}>{certificateData.institutionName}</span>
-                <span style={dashLineStyle}></span>
-              </span>
-            </p>
-          </div>
-          
-          {/* Certificate Content - Main Body */}
-          <div className="mb-8 leading-relaxed text-lg">
-            <p className="mb-4">
-              This is to certify that{' '}
-              <span style={dashStyle}>
-                <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
-                  __html: getRandomVariation(certificateData.patientName)
-                }}></span>
-                <span style={dashLineStyle}></span>
-              </span>
-              , aged{' '}
-              <span style={dashStyle}>
-                <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
-                  __html: getRandomVariation(certificateData.patientAge)
-                }}></span>
-                <span style={dashLineStyle}></span>
-              </span>
-              {' '}years, was unable to attend{' '}
-              <span style={dashStyle}>
-                <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
-                  __html: getRandomVariation(certificateData.institutionName)
-                }}></span>
-                <span style={dashLineStyle}></span>
-              </span>
-              {' '}due to{' '}
-              <span style={dashStyle}>
-                <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
-                  __html: getRandomVariation(certificateData.reasonForAbsence)
-                }}></span>
-                <span style={dashLineStyle}></span>
-              </span>
-              .
-            </p>
+            {/* Certificate Title */}
+            <div className="text-center mb-8">
+              <h1 className="text-2xl font-bold uppercase tracking-wider text-blue-900 mb-1">MEDICAL CERTIFICATE</h1>
+              <div className="h-1 w-32 bg-blue-900 mx-auto"></div>
+            </div>
             
-            <p className="mb-4">
-              {certificateData.patientGender === 'male' ? 'He' : certificateData.patientGender === 'female' ? 'She' : 'They'} was advised complete rest and proper medication for the period of{' '}
-              <span style={dashStyle}>
-                <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
-                  __html: getRandomVariation(getDateRange(certificateData.startDate, certificateData.endDate))
-                }}></span>
-                <span style={dashLineStyle}></span>
-              </span>
-              .
-            </p>
-            
-            <p className="mb-4">
-              During this period, {certificateData.patientGender === 'male' ? 'he' : certificateData.patientGender === 'female' ? 'she' : 'they'} was unable to perform any academic activities due to {genderPronoun} medical condition.
-            </p>
-            
-            {certificateData.additionalNotes && (
-              <p className="mb-4">
-                <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
-                  __html: getRandomVariation(certificateData.additionalNotes)
-                }}></span>
+            {/* Certificate Date and Location */}
+            <div className="flex justify-end mb-6">
+              <p style={{ fontFamily: randomFont }} className="text-gray-700">
+                {certificateData.cityName}, {currentDate}
               </p>
-            )}
-            
-            <p className="mb-4">
-              I request you to consider {genderPronoun} medical leave and grant necessary attendance/exemption as per your institution rules.
-            </p>
-          </div>
-          
-          {/* Certificate Signature Area */}
-          <div className="flex justify-between items-end mt-12">
-            <div className="max-w-[45%]">
-              <p style={highlightedTextStyle} className="mb-2" dangerouslySetInnerHTML={{ 
-                __html: getRandomVariation(certificateData.parentName)
-              }}></p>
-              <p className="text-gray-600">Parent/Guardian</p>
             </div>
             
-            <div className="max-w-[45%] text-right">
-              <p style={highlightedTextStyle} className="mb-2" dangerouslySetInnerHTML={{ 
-                __html: getRandomVariation(certificateData.doctorName || "Dr. Medical Practitioner")
-              }}></p>
-              <p className="md:font-bold text-gray-600" dangerouslySetInnerHTML={{ 
-                __html: getRandomVariation(certificateData.doctorName || "Dr. Medical Practitioner")
-              }}></p>
-              <p className="text-gray-600">MBBS, MPH, REG. NO: 110212</p>
-              <p className="text-gray-600">Sr. Medical Supridentent</p>
+            {/* Certificate Content - Letterhead */}
+            <div className="mb-6">
+              <h2 className="text-xl font-bold mb-2">To Whom It May Concern:</h2>
+              <p className="mb-2">
+                <span className="font-semibold">Institution:</span>{' '}
+                <span style={dashStyle}>
+                  <span style={highlightedTextStyle}>{certificateData.institutionName}</span>
+                  <span style={dashLineStyle}></span>
+                </span>
+              </p>
             </div>
-          </div>
-          
-          {/* Certificate Stamp/Seal */}
-          <div className="absolute bottom-16 right-16 opacity-40 rotate-[-15deg]">
-            <div className="border-2 border-gray-500 rounded-full h-24 w-24 flex items-center justify-center p-1">
-              <div className="border-2 border-gray-500 rounded-full h-full w-full flex items-center justify-center text-gray-600 text-xs text-center p-1">
-                MEDICAL<br/>CERTIFICATE<br/>SEAL
+            
+            {/* Certificate Content - Main Body */}
+            <div className="mb-8 leading-relaxed text-lg">
+              <p className="mb-4">
+                This is to certify that{' '}
+                <span style={dashStyle}>
+                  <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
+                    __html: getRandomVariation(certificateData.patientName)
+                  }}></span>
+                  <span style={dashLineStyle}></span>
+                </span>
+                , aged{' '}
+                <span style={dashStyle}>
+                  <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
+                    __html: getRandomVariation(certificateData.patientAge)
+                  }}></span>
+                  <span style={dashLineStyle}></span>
+                </span>
+                {' '}years, was unable to attend{' '}
+                <span style={dashStyle}>
+                  <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
+                    __html: getRandomVariation(certificateData.institutionName)
+                  }}></span>
+                  <span style={dashLineStyle}></span>
+                </span>
+                {' '}due to{' '}
+                <span style={dashStyle}>
+                  <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
+                    __html: getRandomVariation(certificateData.reasonForAbsence)
+                  }}></span>
+                  <span style={dashLineStyle}></span>
+                </span>
+                .
+              </p>
+              
+              <p className="mb-4">
+                {certificateData.patientGender === 'male' ? 'He' : certificateData.patientGender === 'female' ? 'She' : 'They'} was advised complete rest and proper medication for the period of{' '}
+                <span style={dashStyle}>
+                  <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
+                    __html: getRandomVariation(getDateRange(certificateData.startDate, certificateData.endDate))
+                  }}></span>
+                  <span style={dashLineStyle}></span>
+                </span>
+                .
+              </p>
+              
+              <p className="mb-4">
+                During this period, {certificateData.patientGender === 'male' ? 'he' : certificateData.patientGender === 'female' ? 'she' : 'they'} was unable to perform any academic activities due to {genderPronoun} medical condition.
+              </p>
+              
+              {certificateData.additionalNotes && (
+                <p className="mb-4">
+                  <span style={highlightedTextStyle} dangerouslySetInnerHTML={{ 
+                    __html: getRandomVariation(certificateData.additionalNotes)
+                  }}></span>
+                </p>
+              )}
+              
+              <p className="mb-4">
+                I request you to consider {genderPronoun} medical leave and grant necessary attendance/exemption as per your institution rules.
+              </p>
+            </div>
+            
+            {/* Certificate Signature Area */}
+            <div className="flex justify-between items-end mt-12">
+              <div className="max-w-[45%]">
+                <p style={highlightedTextStyle} className="mb-2" dangerouslySetInnerHTML={{ 
+                  __html: getRandomVariation(certificateData.parentName)
+                }}></p>
+                <p className="text-gray-600">Parent/Guardian</p>
+              </div>
+              
+              <div className="max-w-[45%] text-right">
+                <p style={highlightedTextStyle} className="mb-2" dangerouslySetInnerHTML={{ 
+                  __html: getRandomVariation(certificateData.doctorName || "Dr. Medical Practitioner")
+                }}></p>
+                <p className="md:font-bold text-gray-600" dangerouslySetInnerHTML={{ 
+                  __html: getRandomVariation(certificateData.doctorName || "Dr. Medical Practitioner")
+                }}></p>
+                <p className="text-gray-600">MBBS, MPH, REG. NO: 110212</p>
+                <p className="text-gray-600">Sr. Medical Supridentent</p>
+              </div>
+            </div>
+            
+            {/* Certificate Stamp/Seal */}
+            <div className="absolute bottom-16 right-16 opacity-40 rotate-[-15deg]">
+              <div className="border-2 border-gray-500 rounded-full h-24 w-24 flex items-center justify-center p-1">
+                <div className="border-2 border-gray-500 rounded-full h-full w-full flex items-center justify-center text-gray-600 text-xs text-center p-1">
+                  MEDICAL<br/>CERTIFICATE<br/>SEAL
+                </div>
               </div>
             </div>
           </div>
@@ -370,8 +374,13 @@ const Certificate = () => {
         </button>
       </div>
       
+      {/* Optional: Add instructions for mobile users */}
+      <div className="text-center text-gray-500 text-sm md:hidden mb-4">
+        <p>For best viewing experience, scroll horizontally to see the full certificate.</p>
+      </div>
+      
       <div className="text-center text-gray-500 text-sm">
-        <p>sawad le ladle</p>
+        <p>This certificate is for demonstration purposes only.</p>
         <p>Generated on {currentDate}</p>
       </div>
     </div>

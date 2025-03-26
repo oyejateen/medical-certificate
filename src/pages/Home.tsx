@@ -55,7 +55,8 @@ const Home = () => {
             to="/form" 
             className="btn btn-primary text-lg px-8 py-3"
           >
-            Create Your Certificate Now
+            <span className="hidden sm:inline">Create Your Certificate Now</span>
+            <span className="sm:hidden">Get Started</span>
           </Link>
         </div>
       </div>
