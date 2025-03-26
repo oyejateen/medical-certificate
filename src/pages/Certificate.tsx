@@ -6,7 +6,6 @@ import jsPDF from 'jspdf';
 // Mock handwriting fonts
 const handwritingFonts = [
   "'Caveat', cursive",
-  "'Dancing Script', cursive",
   "'Kalam', cursive",
   "'Indie Flower', cursive",
   "'Shadows Into Light', cursive",
@@ -240,7 +239,7 @@ const Certificate = () => {
             {/* Certificate Title */}
             <div className="text-center mb-8">
               <h1 className="text-2xl font-bold uppercase tracking-wider text-blue-900 mb-1">MEDICAL CERTIFICATE</h1>
-              <div className="h-1 w-32 bg-blue-900 mx-auto"></div>
+              <div className="h-0.5 w-64 bg-blue-900 mx-auto rounded-full"></div>
             </div>
             
             {/* Certificate Date and Location */}
